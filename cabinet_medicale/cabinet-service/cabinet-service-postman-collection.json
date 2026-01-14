@@ -1,0 +1,973 @@
+{
+	"info": {
+		"_postman_id": "cabinet-service-api-collection",
+		"name": "Cabinet Service API - Tests Complets",
+		"description": "Collection Postman pour tester toutes les fonctionnalités du cabinet-service selon le cahier des charges.\n\nFonctionnalités Administrateur:\n- Gestion des cabinets (Créer, Modifier, Supprimer, Activer, Désactiver)\n- Gestion des utilisateurs (Créer, Modifier, Supprimer)\n\nPort: 8082",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Gestion des Cabinets",
+			"item": [
+				{
+					"name": "1.1. Créer un Cabinet (avec utilisateurs)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response has cabinet ID\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.environment.set(\"cabinetId\", jsonData.id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nom\": \"Cabinet Médical Dr. Smith\",\n    \"specialite\": \"Médecine Générale\",\n    \"adresse\": \"123 Rue de la Santé, Casablanca\",\n    \"tel\": \"0522123456\",\n    \"email\": \"contact@cabinet-smith.ma\",\n    \"logo\": null,\n    \"utilisateurs\": [\n        {\n            \"login\": \"dr.smith\",\n            \"pwd\": \"password123\",\n            \"nom\": \"Smith\",\n            \"prenom\": \"John\",\n            \"numTel\": \"0612345678\",\n            \"signature\": null,\n            \"role\": \"MEDECIN\"\n        },\n        {\n            \"login\": \"secretary1\",\n            \"pwd\": \"password123\",\n            \"nom\": \"Dupont\",\n            \"prenom\": \"Marie\",\n            \"numTel\": \"0612345679\",\n            \"signature\": null,\n            \"role\": \"SECRETAIRE\"\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/cabinets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"cabinets"
+							]
+						},
+						"description": "Créer un nouveau cabinet avec ses utilisateurs (médecin et secrétaire). Conforme au diagramme de séquence \"4. Création Cabinet et Utilisateurs\"."
+					},
+					"response": []
+				},
+				{
+					"name": "1.2. Obtenir tous les Cabinets",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/cabinets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"cabinets"
+							]
+						},
+						"description": "Récupère la liste de tous les cabinets. Réservé à l'administrateur."
+					},
+					"response": []
+				},
+				{
+					"name": "1.3. Obtenir un Cabinet par ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/cabinets/{{cabinetId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"cabinets",
+								"{{cabinetId}}"
+							]
+						},
+						"description": "Récupère un cabinet spécifique par son ID."
+					},
+					"response": []
+				},
+				{
+					"name": "1.4. Obtenir les Cabinets Actifs",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/cabinets/actifs",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"cabinets",
+								"actifs"
+							]
+						},
+						"description": "Récupère uniquement les cabinets actifs."
+					},
+					"response": []
+				},
+				{
+					"name": "1.5. Obtenir Cabinets par Spécialité",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/cabinets/specialite/Médecine Générale",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"cabinets",
+								"specialite",
+								"Médecine Générale"
+							]
+						},
+						"description": "Récupère les cabinets filtrés par spécialité."
+					},
+					"response": []
+				},
+				{
+					"name": "1.6. Vérifier si un Cabinet existe",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/cabinets/existe?nom=Cabinet Médical Dr. Smith",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"cabinets",
+								"existe"
+							],
+							"query": [
+								{
+									"key": "nom",
+									"value": "Cabinet Médical Dr. Smith"
+								}
+							]
+						},
+						"description": "Vérifie si un cabinet existe par son nom."
+					},
+					"response": []
+				},
+				{
+					"name": "1.7. Modifier un Cabinet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": {{cabinetId}},\n    \"nom\": \"Cabinet Médical Dr. Smith - Mis à jour\",\n    \"specialite\": \"Médecine Générale et Cardiologie\",\n    \"adresse\": \"456 Avenue de la Santé, Casablanca\",\n    \"tel\": \"0522123457\",\n    \"email\": \"nouveau-contact@cabinet-smith.ma\",\n    \"logo\": null,\n    \"dateCreation\": null,\n    \"actif\": true\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/cabinets/{{cabinetId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"cabinets",
+								"{{cabinetId}}"
+							]
+						},
+						"description": "Modifie les informations d'un cabinet existant. Réservé à l'administrateur."
+					},
+					"response": []
+				},
+				{
+					"name": "1.8. Activer un Cabinet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Cabinet is activated\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.actif).to.be.true;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/cabinets/{{cabinetId}}/activate",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"cabinets",
+								"{{cabinetId}}",
+								"activate"
+							]
+						},
+						"description": "Active un cabinet (rend le service disponible). Conforme au diagramme de séquence \"4. Création Cabinet et Utilisateurs\". Réservé à l'administrateur."
+					},
+					"response": []
+				},
+				{
+					"name": "1.9. Désactiver un Cabinet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"",
+									"pm.test(\"Cabinet is deactivated\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData.actif).to.be.false;",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/cabinets/{{cabinetId}}/desactiver",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"cabinets",
+								"{{cabinetId}}",
+								"desactiver"
+							]
+						},
+						"description": "Désactive un cabinet (suspend le service). Réservé à l'administrateur."
+					},
+					"response": []
+				},
+				{
+					"name": "1.10. Supprimer un Cabinet",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/cabinets/{{cabinetId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"cabinets",
+								"{{cabinetId}}"
+							]
+						},
+						"description": "Supprime un cabinet. Réservé à l'administrateur."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints pour la gestion des cabinets selon le cahier des charges"
+		},
+		{
+			"name": "2. Gestion des Utilisateurs",
+			"item": [
+				{
+					"name": "2.1. Créer un Médecin",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response has user ID\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData.role).to.eql('MEDECIN');",
+									"    pm.environment.set(\"medecinId\", jsonData.id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\": \"dr.martin\",\n    \"password\": \"password123\",\n    \"nom\": \"Martin\",\n    \"prenom\": \"Pierre\",\n    \"numTel\": \"0612345680\",\n    \"signature\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==\",\n    \"role\": \"MEDECIN\",\n    \"cabinetId\": {{cabinetId}}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "Crée un nouvel utilisateur de type MÉDECIN. Conforme au diagramme de séquence \"4. Création Cabinet et Utilisateurs\". Réservé à l'administrateur."
+					},
+					"response": []
+				},
+				{
+					"name": "2.2. Créer un Secrétaire",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									"",
+									"pm.test(\"Response has user ID\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData).to.have.property('id');",
+									"    pm.expect(jsonData.role).to.eql('SECRETAIRE');",
+									"    pm.environment.set(\"secretaireId\", jsonData.id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\": \"secretary2\",\n    \"password\": \"password123\",\n    \"nom\": \"Bernard\",\n    \"prenom\": \"Sophie\",\n    \"numTel\": \"0612345681\",\n    \"signature\": null,\n    \"role\": \"SECRETAIRE\",\n    \"cabinetId\": {{cabinetId}}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "Crée un nouvel utilisateur de type SECRÉTAIRE. Conforme au diagramme de séquence \"4. Création Cabinet et Utilisateurs\". Réservé à l'administrateur."
+					},
+					"response": []
+				},
+				{
+					"name": "2.3. Obtenir un Utilisateur par ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/users/{{medecinId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"users",
+								"{{medecinId}}"
+							]
+						},
+						"description": "Récupère un utilisateur spécifique par son ID."
+					},
+					"response": []
+				},
+				{
+					"name": "2.4. Obtenir Utilisateur par Login (pour Auth Service)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/users/by-login/dr.martin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"users",
+								"by-login",
+								"dr.martin"
+							]
+						},
+						"description": "Récupère un utilisateur par son login. Conforme au diagramme de séquence \"1. Authentification et Login\". Utilisé par Auth Service."
+					},
+					"response": []
+				},
+				{
+					"name": "2.5. Obtenir Utilisateurs d'un Cabinet",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/users/cabinet/{{cabinetId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"users",
+								"cabinet",
+								"{{cabinetId}}"
+							]
+						},
+						"description": "Récupère tous les utilisateurs d'un cabinet spécifique."
+					},
+					"response": []
+				},
+				{
+					"name": "2.6. Obtenir Utilisateurs par Rôle",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/users/role/MEDECIN",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"users",
+								"role",
+								"MEDECIN"
+							]
+						},
+						"description": "Récupère tous les utilisateurs ayant un rôle spécifique (MEDECIN, SECRETAIRE, ADMINISTRATEUR)."
+					},
+					"response": []
+				},
+				{
+					"name": "2.7. Obtenir Utilisateurs d'un Cabinet par Rôle",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/users/cabinet/{{cabinetId}}/role/SECRETAIRE",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"users",
+								"cabinet",
+								"{{cabinetId}}",
+								"role",
+								"SECRETAIRE"
+							]
+						},
+						"description": "Récupère les utilisateurs d'un cabinet filtrés par rôle."
+					},
+					"response": []
+				},
+				{
+					"name": "2.8. Vérifier si un Login existe",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/users/existe?login=dr.martin",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"users",
+								"existe"
+							],
+							"query": [
+								{
+									"key": "login",
+									"value": "dr.martin"
+								}
+							]
+						},
+						"description": "Vérifie si un login existe déjà dans le système."
+					},
+					"response": []
+				},
+				{
+					"name": "2.9. Modifier un Utilisateur",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": {{medecinId}},\n    \"login\": \"dr.martin\",\n    \"nom\": \"Martin\",\n    \"prenom\": \"Pierre-Antoine\",\n    \"numTel\": \"0612345682\",\n    \"signature\": \"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==\",\n    \"role\": \"MEDECIN\",\n    \"actif\": true,\n    \"cabinetId\": {{cabinetId}}\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/users/{{medecinId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"users",
+								"{{medecinId}}"
+							]
+						},
+						"description": "Modifie les informations d'un utilisateur existant. Réservé à l'administrateur."
+					},
+					"response": []
+				},
+				{
+					"name": "2.10. Changer Statut Utilisateur (Activer/Désactiver)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/users/{{medecinId}}/statut?actif=false",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"users",
+								"{{medecinId}}",
+								"statut"
+							],
+							"query": [
+								{
+									"key": "actif",
+									"value": "false",
+									"description": "true pour activer, false pour désactiver"
+								}
+							]
+						},
+						"description": "Active ou désactive un utilisateur. Réservé à l'administrateur."
+					},
+					"response": []
+				},
+				{
+					"name": "2.11. Supprimer un Utilisateur",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {",
+									"    pm.response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/users/{{secretaireId}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"users",
+								"{{secretaireId}}"
+							]
+						},
+						"description": "Supprime un utilisateur. Réservé à l'administrateur."
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoints pour la gestion des utilisateurs selon le cahier des charges"
+		},
+		{
+			"name": "3. Scénarios de Test Complets",
+			"item": [
+				{
+					"name": "3.1. Scénario Complet: Création Cabinet + Utilisateurs + Activation",
+					"item": [
+						{
+							"name": "Étape 1: Créer Cabinet",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nom\": \"Cabinet Test Complet\",\n    \"specialite\": \"Cardiologie\",\n    \"adresse\": \"789 Boulevard de la Santé\",\n    \"tel\": \"0522999999\",\n    \"email\": \"test@cabinet.ma\",\n    \"utilisateurs\": []\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/api/cabinets",
+									"protocol": "http",
+									"host": ["localhost"],
+									"port": "8082",
+									"path": ["api", "cabinets"]
+								}
+							},
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});",
+											"",
+											"if (pm.response.code === 201) {",
+											"    var jsonData = pm.response.json();",
+											"    var cabinetId = jsonData.id.toString();",
+											"    pm.environment.set(\"scenarioCabinetId\", cabinetId);",
+											"    pm.collectionVariables.set(\"scenarioCabinetId\", cabinetId);",
+											"    console.log(\"✅ Cabinet créé avec ID: \" + cabinetId);",
+											"    console.log(\"✅ Variable scenarioCabinetId définie: \" + cabinetId);",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								}
+							]
+						},
+						{
+							"name": "Étape 2: Créer Médecin",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// Vérifier que la variable scenarioCabinetId est définie",
+											"var cabinetId = pm.environment.get(\"scenarioCabinetId\") || pm.collectionVariables.get(\"scenarioCabinetId\");",
+											"",
+											"if (!cabinetId) {",
+											"    // Essayer d'utiliser cabinetId comme fallback",
+											"    cabinetId = pm.environment.get(\"cabinetId\") || pm.collectionVariables.get(\"cabinetId\");",
+											"    ",
+											"    if (cabinetId) {",
+											"        pm.environment.set(\"scenarioCabinetId\", cabinetId);",
+											"        pm.collectionVariables.set(\"scenarioCabinetId\", cabinetId);",
+											"        console.log(\"✅ Utilisation de cabinetId = \" + cabinetId);",
+											"    } else {",
+											"        // Utiliser une valeur par défaut avec avertissement",
+											"        console.warn(\"⚠️ ATTENTION: La variable scenarioCabinetId n'est pas définie.\");",
+											"        console.warn(\"⚠️ Exécutez d'abord l'Étape 1: Créer Cabinet pour définir automatiquement cette variable.\");",
+											"        console.warn(\"⚠️ Ou définissez manuellement scenarioCabinetId dans les variables de la collection.\");",
+											"        console.warn(\"⚠️ Utilisation de la valeur par défaut: 1 (assurez-vous que ce cabinet existe)\");",
+											"        cabinetId = \"1\";",
+											"        pm.environment.set(\"scenarioCabinetId\", cabinetId);",
+											"        pm.collectionVariables.set(\"scenarioCabinetId\", cabinetId);",
+											"    }",
+											"} else {",
+											"    console.log(\"✅ Variable scenarioCabinetId trouvée: \" + cabinetId);",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"login\": \"dr.test\",\n    \"password\": \"test123\",\n    \"nom\": \"Test\",\n    \"prenom\": \"Docteur\",\n    \"numTel\": \"0612345683\",\n    \"signature\": null,\n    \"role\": \"MEDECIN\",\n    \"cabinetId\": {{scenarioCabinetId}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/api/users",
+									"protocol": "http",
+									"host": ["localhost"],
+									"port": "8082",
+									"path": ["api", "users"]
+								}
+							}
+						},
+						{
+							"name": "Étape 3: Créer Secrétaire",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"// Vérifier que la variable scenarioCabinetId est définie",
+											"var cabinetId = pm.environment.get(\"scenarioCabinetId\") || pm.collectionVariables.get(\"scenarioCabinetId\");",
+											"",
+											"if (!cabinetId) {",
+											"    // Essayer d'utiliser cabinetId comme fallback",
+											"    cabinetId = pm.environment.get(\"cabinetId\") || pm.collectionVariables.get(\"cabinetId\");",
+											"    ",
+											"    if (cabinetId) {",
+											"        pm.environment.set(\"scenarioCabinetId\", cabinetId);",
+											"        pm.collectionVariables.set(\"scenarioCabinetId\", cabinetId);",
+											"        console.log(\"✅ Utilisation de cabinetId = \" + cabinetId);",
+											"    } else {",
+											"        // Utiliser une valeur par défaut avec avertissement",
+											"        console.warn(\"⚠️ ATTENTION: La variable scenarioCabinetId n'est pas définie.\");",
+											"        console.warn(\"⚠️ Exécutez d'abord l'Étape 1: Créer Cabinet pour définir automatiquement cette variable.\");",
+											"        console.warn(\"⚠️ Ou définissez manuellement scenarioCabinetId dans les variables de la collection.\");",
+											"        console.warn(\"⚠️ Utilisation de la valeur par défaut: 1 (assurez-vous que ce cabinet existe)\");",
+											"        cabinetId = \"1\";",
+											"        pm.environment.set(\"scenarioCabinetId\", cabinetId);",
+											"        pm.collectionVariables.set(\"scenarioCabinetId\", cabinetId);",
+											"    }",
+											"} else {",
+											"    console.log(\"✅ Variable scenarioCabinetId trouvée: \" + cabinetId);",
+											"}"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 201\", function () {",
+											"    pm.response.to.have.status(201);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"login\": \"secretary.test\",\n    \"password\": \"test123\",\n    \"nom\": \"Test\",\n    \"prenom\": \"Secrétaire\",\n    \"numTel\": \"0612345684\",\n    \"signature\": null,\n    \"role\": \"SECRETAIRE\",\n    \"cabinetId\": {{scenarioCabinetId}}\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8082/api/users",
+									"protocol": "http",
+									"host": ["localhost"],
+									"port": "8082",
+									"path": ["api", "users"]
+								}
+							}
+						},
+						{
+							"name": "Étape 4: Activer Cabinet",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8082/api/cabinets/{{scenarioCabinetId}}/activate",
+									"protocol": "http",
+									"host": ["localhost"],
+									"port": "8082",
+									"path": ["api", "cabinets", "{{scenarioCabinetId}}", "activate"]
+								}
+							}
+						}
+					],
+					"description": "Scénario complet conforme au diagramme de séquence \"4. Création Cabinet et Utilisateurs\""
+				}
+			],
+			"description": "Scénarios de test complets pour valider les workflows du cahier des charges"
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8082",
+			"type": "string"
+		},
+		{
+			"key": "cabinetId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "scenarioCabinetId",
+			"value": "",
+			"type": "string",
+			"description": "ID du cabinet créé dans le scénario complet. Défini automatiquement après l'Étape 1."
+		},
+		{
+			"key": "medecinId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "secretaireId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
+

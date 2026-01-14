@@ -1,0 +1,1404 @@
+{
+	"info": {
+		"_postman_id": "chatbot-service-complete-2025",
+		"name": "Chatbot Service - Collection Complète de Tests",
+		"description": "Collection complète pour tester toutes les fonctionnalités du chatbot de A à Z",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "A. Salutations et Interactions de Base",
+			"item": [
+				{
+					"name": "A1. Salutation simple",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Bonjour\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "A2. Salutation alternative",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Salut\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "A3. Demander de l'aide",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Aide\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "A4. Remerciement",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Merci beaucoup\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "A5. Au revoir",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Au revoir\",\n    \"cabinetId\": 1,\n    \"patientId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "A6. Bonsoir",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Bonsoir\",\n    \"cabinetId\": 1,\n    \"patientId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "B. Informations sur le Cabinet",
+			"item": [
+				{
+					"name": "B1. Demander l'adresse du cabinet",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Où est situé le cabinet ?\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "B2. Demander les informations complètes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Informations sur le cabinet\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "B3. Demander le numéro de téléphone",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Quel est le numéro de téléphone ?\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "B4. API Directe - Obtenir infos cabinet",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/cabinet/1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "cabinet", "1"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "C. Consulter les Disponibilités",
+			"item": [
+				{
+					"name": "C1. Disponibilités pour demain",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Quelles sont les disponibilités pour demain ?\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "C2. Disponibilités pour un jour spécifique (format date)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Disponibilités pour le 25/12/2025\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "C3. Disponibilités pour lundi",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Disponibilités lundi\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "C4. Disponibilités dans 3 jours",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Disponibilités dans 3 jours\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "C5. Demander disponibilités sans date",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Quelles sont les disponibilités ?\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "C6. Répondre avec une date après demande",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"demain\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "C7. API Directe - Disponibilités",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/disponibilites?date=2025-12-20&cabinetId=1",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "disponibilites"],
+							"query": [
+								{
+									"key": "date",
+									"value": "2025-12-20"
+								},
+								{
+									"key": "cabinetId",
+									"value": "1"
+								}
+							]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "D. Prendre un Rendez-vous",
+			"item": [
+				{
+					"name": "D1. Initier prise de RDV",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Je veux prendre rendez-vous\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "D2. Prise RDV - Répondre avec date (demain)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"demain\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "D3. Prise RDV - Répondre avec heure (14h30)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"14h30\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "D4. Prise RDV complète en une fois (date + heure)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Je veux un rendez-vous demain à 10h\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "D5. Prise RDV avec date format 25/12",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Je veux un rdv le 25/12 à 15h\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "D6. Prise RDV avec jour de la semaine",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Je souhaite un rendez-vous lundi à 9h30\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "D7. Prise RDV avec heure en format 24h",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Rendez-vous demain à 16:00\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "D8. Prise RDV avec heure en mots (matin, midi, soir)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Je veux un rendez-vous demain matin\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "D9. API Directe - Créer un RDV",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"dateRdv\": \"2025-12-20\",\n    \"heureRdv\": \"14:30\",\n    \"motif\": \"CONSULTATION\",\n    \"patientId\": 100,\n    \"utilisateurId\": 100,\n    \"cabinetId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/rendez-vous",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "rendez-vous"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "E. Consulter mes Rendez-vous",
+			"item": [
+				{
+					"name": "E1. Consulter mes rendez-vous",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Mes rendez-vous\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "E2. Consulter mes RDV (variante)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Quels sont mes rendez-vous ?\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "E3. Voir ma liste de rendez-vous",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Liste de mes rendez-vous\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "F. Annuler un Rendez-vous",
+			"item": [
+				{
+					"name": "F1. Annuler un rendez-vous",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Je veux annuler\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "F2. Annuler un RDV avec ID",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Je veux annuler le rendez-vous 1\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "F3. Annuler après avoir consulté la liste",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Annuler le rdv 2\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "F4. API Directe - Annuler un RDV",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/rendez-vous/1/annuler",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "rendez-vous", "1", "annuler"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "G. Scénarios Complexes et Cas Limites",
+			"item": [
+				{
+					"name": "G1. Message non compris",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"xyzabc123\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "G2. Annulation en cours de processus",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"annuler\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "G3. Date invalide",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Disponibilités pour abc123\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "G4. Heure invalide",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"25h\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "G5. Conversation complète - Flux de réservation",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Bonjour, je voudrais prendre rendez-vous\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "H. Tests avec Différents Formats de Dates",
+			"item": [
+				{
+					"name": "H1. Date avec après-demain",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Disponibilités après-demain\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "H2. Date avec jour de la semaine (mardi)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Je veux un rdv mardi\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "H3. Date avec lundi prochain",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Rendez-vous lundi prochain\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "I. Tests avec Différents Formats d'Heures",
+			"item": [
+				{
+					"name": "I1. Heure format 14h",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"14h\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "I2. Heure format 14:30",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"14:30\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "I3. Heure avec mot (midi)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"midi\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "I4. Heure avec mot (soir)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"soir\",\n    \"cabinetId\": 1,\n    \"patientId\": 100\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "I5. Heure format 14 heures",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"14 heures\",\n    \"cabinetId\": 1,\n    \"patientId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "I6. Heure format 15 heures 30",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"15 heures 30\",\n    \"cabinetId\": 1,\n    \"patientId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "I7. Heure avec mot (matin)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"matin\",\n    \"cabinetId\": 1,\n    \"patientId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "I8. Heure avec mot (après-midi)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"après-midi\",\n    \"cabinetId\": 1,\n    \"patientId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "J. Tests d'Annulation - IDs simples",
+			"item": [
+				{
+					"name": "J1. Annulation avec ID simple (789)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"789\",\n    \"cabinetId\": 1,\n    \"patientId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "J2. Annulation avec ID 123",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Je veux annuler mon rendez-vous 123\",\n    \"cabinetId\": 1,\n    \"patientId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "J3. Annulation - Réponse avec ID simple",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"1\",\n    \"cabinetId\": 1,\n    \"patientId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "K. Tests de Messages Incompréhensibles",
+			"item": [
+				{
+					"name": "K1. Message aléatoire (blablabla)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"blablabla xyz 123\",\n    \"cabinetId\": 1,\n    \"patientId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "K2. Message vide (simulation)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"   \",\n    \"cabinetId\": 1,\n    \"patientId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "K3. Date dans le passé",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Je veux un rendez-vous hier\",\n    \"cabinetId\": 1,\n    \"patientId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "K4. Heure hors horaires (8h)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Je veux un rendez-vous demain à 8h\",\n    \"cabinetId\": 1,\n    \"patientId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "L. Tests Disponibilités - Cas Spécifiques",
+			"item": [
+				{
+					"name": "L1. Disponibilités demain (format simple)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Disponibilités demain\",\n    \"cabinetId\": 1,\n    \"patientId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				},
+				{
+					"name": "L2. Disponibilités après-demain (fixé)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"message\": \"Disponibilités après-demain\",\n    \"cabinetId\": 1,\n    \"patientId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8093/api/chatbot/message",
+							"protocol": "http",
+							"host": ["localhost"],
+							"port": "8093",
+							"path": ["api", "chatbot", "message"]
+						}
+					}
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:8093",
+			"type": "string"
+		},
+		{
+			"key": "cabinetId",
+			"value": "1",
+			"type": "string"
+		},
+		{
+			"key": "patientId",
+			"value": "100",
+			"type": "string"
+		}
+	]
+}
